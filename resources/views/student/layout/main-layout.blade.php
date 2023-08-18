@@ -30,19 +30,19 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        @include('layout.Sidebar')
+        @include('student.layout.Sidebar')
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 
-            @include('layout.Topbar')
+            @include('student.layout.Topbar')
 
             <!-- Main Content -->
             <div id="content">
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
-                    @yield('main-container')
+                    @yield('student-main-container')
 
                 </div>
                 <!-- /.container-fluid -->

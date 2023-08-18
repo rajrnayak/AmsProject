@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\department\DepartmentController;
+use App\Http\Controllers\{AuthController,AdminController,DepartmentController,FacultyController,StudentController};
+// use App\Http\Controllers\AdminController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::get('/login',[AuthController::class,'GetLogin'])/*->name('getLogin')*/;
 
 Route::get('/admin/dashboard',[AdminController::class,'AdminDashboard']);
 
-Route::get('/department/add-department',[DepartmentController::class,'AddDepartment']);
-Route::get('/department/view-department',[DepartmentController::class,'ViewDepartment']);
+Route::get('/admin/department/add-department',[DepartmentController::class,'AddDepartment']);
+Route::get('/admin/department/view-department',[DepartmentController::class,'ViewDepartment']);
 
+Route::get('/faculty/dashboard',[FacultyController::class,'FacultyDashboard']);
+
+Route::get('/student/dashboard',[StudentController::class,'StudentDashboard']);

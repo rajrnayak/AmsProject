@@ -1,4 +1,4 @@
-@extends('layout.main-layout')
+@extends('admin.layout.main-layout')
 @section('main-container')
     <!-- Content Row -->
     <form action="">
