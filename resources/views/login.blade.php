@@ -9,21 +9,18 @@
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="" class="fade-in-up">
+                <form action="{{route('postLogin')}}" class="fade-in-up">
                     <h2>Login</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" placeholder="Email" required>
+                        <input type="email" name="email" placeholder="Email" required>
                     </div>
                     <div class="inputbox">
                         <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" placeholder="Password" required>
+                        <input type="password" name="password" placeholder="Password" required>
                     </div>
-                    <div class="forget">
-                        <label for=""><input type="checkbox">Remember Me  <a href="#">Forget Password</a></label>
-
-                    </div>
-                    <button>Log in</button>
+                    <input type="hidden" name="role" value="0">
+                    <button>Login</button>
                 </form>
             </div>
         </div>
