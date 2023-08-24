@@ -20,7 +20,7 @@ class studentAuth
             return $next($request);
         }
         else{
-            return redirect()->route('getLogin');
+            return redirect('/');
         }
     }
 }

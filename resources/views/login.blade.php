@@ -19,7 +19,6 @@
                         <ion-icon name="lock-closed-outline"></ion-icon>
                         <input type="password" name="password" placeholder="Password" required>
                     </div>
-                    <input type="hidden" name="role" value="0">
                     <button>Login</button>
                 </form>
             </div>

@@ -20,7 +20,7 @@ class facultyAuth
             return $next($request);
         }
         else{
-            return redirect()->route('getLogin');
+            return redirect('/');
         }
     }
 }

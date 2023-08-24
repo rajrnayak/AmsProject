@@ -39,42 +39,72 @@ class LoginController extends Controller
     {
         // $this->middleware('guest')->except('logout');
     }
-    public function GetLogin(){
+    public function Login(){
+        if(auth()->user()){
+            $route = $this->RedirectDash();
+            return redirect()->route($route);
+        }
         return view('login');
     }
     public function PostLogin(Request $request){
         $input = $request->all();
-        // dd($input);
-        // dd($input , auth()->user() && auth()->user()->role == 2);
         $this->validate($request, [
             'email' => 'required|email',
             'password' => 'required',
-            'role' => 'required',
         ]);
+        $email = $request->input('email');
+        $password = $request->input('password');
+        $attempt = Auth::attempt(['email' => $email, 'password' => $password]);
 
-        if (auth()->attempt(array('email' => $input['email'], 'password' => $input['password'], 'role' => $input['role'])))
+        if($attempt)
         {
-            // dd($input , auth()->user() && auth()->user()->role == 2);
-            if (auth()->user() && auth()->user()->role == 2)
-            {
-              return redirect()->route('Admin.dashboard');
-            }
-            else if (auth()->user() && auth()->user()->role == 1)
-            {
-              return redirect()->route('faculty.dashboard');
-            }
-            else if (auth()->user() && auth()->user()->role == 0)
-            {
-              return redirect()->route('student.dashboard');
-            }
-            // else
-            // {
-            //   return url('/');
-            // }
+
+            $route = $this->RedirectDash();
+            return redirect()->route($route);
         }
         else
         {
             return redirect()->route('getLogin');
         }
+    }
+
+    public function LoadLogin(){
+        if(auth()->user()){
+            $route = $this->RedirectDash();
+            return redirect()->route($route);
+        }
+        else{
+            return redirect()->route('getLogin');
+        }
+    }
+
+    public function RedirectDash(){
+        $redirect = '';
+
+        if (auth()->check() && auth()->user()->role == 2)
+            {
+                $redirect = 'Admin.dashboard';
+            }
+            else if (auth()->check() && auth()->user()->role == 1)
+            {
+              $redirect = 'faculty.dashboard';
+            }
+            else if (auth()->check() && auth()->user()->role == 0)
+            {
+              $redirect = 'student.dashboard';
+            }
+
+        return $redirect;
+    }
+
+    public function Logout(Request $request)
+    {
+        Auth::Logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+
+        return redirect('/');
     }
 }
