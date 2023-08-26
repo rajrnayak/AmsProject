@@ -10,6 +10,7 @@
         <div class="form-box">
             <div class="form-value">
                 <form action="{{route('postLogin')}}" class="fade-in-up">
+                    @csrf
                     <h2>Login</h2>
                     <div class="inputbox">
                         <ion-icon name="mail-outline"></ion-icon>
