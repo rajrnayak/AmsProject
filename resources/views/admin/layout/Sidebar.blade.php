@@ -2,7 +2,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ asset('admin/dashboard') }}">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('admin.dashboard') }}">
         <div class="sidebar-brand-text mx-3">AmsProject</div>
     </a>
 
@@ -11,7 +11,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ asset('admin/dashboard') }}">
+        <a class="nav-link" href="{{ route('admin.dashboard') }}">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -27,8 +27,22 @@
         </a>
         <div id="collapseDepartment" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{asset('/admin/department/add-department')}}">Add Department</a>
-                <a class="collapse-item" href="{{asset('/admin/department/view-department')}}">View Department</a>
+                <a class="collapse-item" href="{{route('add.department')}}">Add Department</a>
+                <a class="collapse-item" href="{{route('view.department')}}">View Department</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsecourse"
+            aria-expanded="true" aria-controls="collapsecourse">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>course</span>
+        </a>
+        <div id="collapsecourse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('add.course')}}">Add course</a>
+                <a class="collapse-item" href="{{route('view.course')}}">View course</a>
             </div>
         </div>
     </li>
