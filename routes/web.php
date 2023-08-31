@@ -34,18 +34,26 @@ Route::group(['prefix' => 'admin','middleware' => ['web','isAdmin']],function(){
 
     Route::get('/dashboard',[AdminController::class,'AdminDashboard'])->name('admin.dashboard');
     Route::get('/department/add-department',[AdminController::class,'AddDepartment'])->name('add.department');
-    Route::get('/department/view-department',[AdminController::class,'ViewDepartment'])->name('view.department');
     Route::get('/department/insert-department',[AdminController::class,'InsertDepartment'])->name('insert.department');
+    Route::get('/department/view-department',[AdminController::class,'ViewDepartment'])->name('view.department');
     Route::get('/department/edit-department/{id}',[AdminController::class,'EditDepartment'])->name('edit.department');
     Route::get('/department/update-department',[AdminController::class,'UpdateDepartment'])->name('update.department');
     Route::get('/department/delete-department/{id}',[AdminController::class,'DeleteDepartment'])->name('delete.department');
 
     Route::get('/course/add-course',[AdminController::class,'AddCourse'])->name('add.course');
-    Route::get('/course/view-course',[AdminController::class,'ViewCourse'])->name('view.course');
     Route::get('/course/insert-course',[AdminController::class,'InsertCourse'])->name('insert.course');
+    Route::get('/course/view-course',[AdminController::class,'ViewCourse'])->name('view.course');
     Route::get('/course/edit-course/{id}',[AdminController::class,'EditCourse'])->name('edit.course');
     Route::get('/course/update-course',[AdminController::class,'UpdateCourse'])->name('update.course');
     Route::get('/course/delete-course/{id}',[AdminController::class,'DeleteCourse'])->name('delete.course');
+
+    Route::get('/faculty/add-faculty',[AdminController::class,'AddFaculty'])->name('add.faculty');
+    Route::get('/course/get-course-by-dept-id/{id}',[AdminController::class,'GetCourseByDepartmentId']);
+    Route::get('/faculty/insert-faculty',[AdminController::class,'InsertFaculty'])->name('insert.faculty');
+    Route::get('/faculty/view-faculty',[AdminController::class,'ViewFaculty'])->name('view.faculty');
+    Route::get('/faculty/edit-faculty/{id}',[AdminController::class,'EditFaculty'])->name('edit.faculty');
+    Route::get('/faculty/update-faculty',[AdminController::class,'UpdateFaculty'])->name('update.faculty');
+    Route::get('/faculty/delete-faculty/{id}',[AdminController::class,'DeleteFaculty'])->name('delete.faculty');
 
 });
 

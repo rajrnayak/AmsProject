@@ -81,6 +81,27 @@
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <script>
+        function getCourseByDepartmentId(value) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/admin/course/get-course-by-dept-id/" + value,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(response) {
+                    fillDropdown(response)
+                }
+            });
+        }
+
+        function fillDropdown(data) {
+            $("#courseDropdown").empty();
+            for (i = 0; i <= data.length; i++) {
+                var newOption = $('<option>');
+                newOption.attr('value', data[i].Course_id).text(data[i].Course_name)
+                $('#courseDropdown').append(newOption);
+            }
+        }
+    </script>
 
 </body>
 </html>
