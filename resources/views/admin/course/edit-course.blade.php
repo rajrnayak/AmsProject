@@ -10,7 +10,7 @@
                         <h3>Update Course</h3>
                         <label>Select Department</label>
                         <input type="hidden" name="courseid" value="{{$courseupdate->Course_id}}">
-                        <br><select name="departmentname">
+                        <br><select name="departmentname" class="form-select" aria-label="select example">
                             <option selected disabled>Select any one..</option>
                              @foreach ($departmentdate as $row)
                                 <option @if ($courseupdate->Course_Department_id == $row->Department_id)

@@ -83,7 +83,7 @@ class LoginController extends Controller
 
         if (auth()->check() && auth()->user()->role == 2)
             {
-                $redirect = 'Admin.dashboard';
+                $redirect = 'admin.dashboard';
             }
             else if (auth()->check() && auth()->user()->role == 1)
             {

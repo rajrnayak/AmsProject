@@ -47,7 +47,7 @@
         </div>
     </li>
 
-    {{-- <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
@@ -56,11 +56,11 @@
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="#">Add Faculty</a>
-                <a class="collapse-item" href="#">View Faculty</a>
+                <a class="collapse-item" href="{{route('add.faculty')}}">Add Faculty</a>
+                <a class="collapse-item" href="{{route('view.faculty')}}">View Faculty</a>
             </div>
         </div>
-    </li> --}}
+    </li>
 
     <!-- Nav Item - Tables -->
     {{-- <li class="nav-item">

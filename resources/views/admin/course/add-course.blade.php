@@ -9,7 +9,7 @@
                     <div class="mb-3">
                         <h3>Add Course</h3>
                         <label>Select Department</label>
-                        <br><select name="departmentname">
+                        <br><select name="departmentname" class="form-select" aria-label="select example">
                             <option selected disabled>Select any one..</option>
                             @foreach ($departmentdata as $row)
                                 <option value="{{$row->Department_id}}">{{$row->Department_name}}</option>

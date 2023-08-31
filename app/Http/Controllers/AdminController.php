@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\department;
 use App\Models\course;
-
+use App\Models\User;
+use App\Models\faculty;
 
 class AdminController extends Controller
 {
@@ -67,7 +68,7 @@ class AdminController extends Controller
     public function EditCourse($id){
         $courseupdate = course::where('Course_id','=',$id)->first();
         $departmentdate = department::all();
-    return view('admin.course.edit-course',compact('departmentdate','courseupdate'));
+        return view('admin.course.edit-course',compact('departmentdate','courseupdate'));
     }
 
     public function UpdateCourse(Request $request){
@@ -79,6 +80,67 @@ class AdminController extends Controller
     public function DeleteCourse($id){
         $coursedelete = course::where('Course_id','=',$id)->delete();
         return redirect()->route('view.course');
+    }
+
+    public function AddFaculty(){
+        $departmentdata = department::all();
+        return view('admin.faculty.add-faculty',compact('departmentdata'));
+    }
+    public function GetCourseByDepartmentId($id){
+        $courses = course::where('Course_Department_id','=',$id)->get();
+        return response()->json($courses);
+    }
+
+    public function InsertFaculty(Request $request){
+        $saveinuser = new User;
+        $saveinuser->email = $request->facultyEmail;
+        $saveinuser->password = bcrypt($request->facultyPassword);
+        $saveinuser->role = $request->facultyRoleType;
+        $saveinuser->save();
+
+        $userid = User::where('email','=',$request->facultyEmail)->value('id');
+
+        $saveinfaculty = new faculty;
+        $saveinfaculty->Faculty_User_id = $userid;
+        $saveinfaculty->Faculty_Department_id = $request->facultyDepartmentId;
+        $saveinfaculty->Faculty_Course_id = $request->facultyCourseId;
+        $saveinfaculty->Faculty_username = $request->facultyName;
+        $saveinfaculty->save();
+
+        return redirect()->route('view.faculty');
+    }
+
+    public function ViewFaculty(){
+        $facultydata = faculty::all();
+        return view('admin.faculty.view-faculty',compact('facultydata'));
+    }
+
+    public function EditFaculty($id){
+        $facultyeditdata = faculty::where('Faculty_id','=',$id)->first();
+        $departmentdata = department::all();
+        $coursedata = course::all();
+        $userdata = User::where('id','=',$facultyeditdata->Faculty_User_id)->first();
+        return view('admin.faculty.edit-faculty',compact('coursedata','departmentdata','facultyeditdata','userdata'));
+    }
+
+    public function UpdateFaculty(Request $request){
+        User::where('id', $request->userid)
+            ->update(['email' => $request->updatedFacultyEmail,
+            'password' => bcrypt($request->updatedFacultyPassword)]);
+
+        faculty::where('Faculty_id', $request->facultyid)
+            ->update(['Faculty_Department_id' => $request->updatedFacultyDepartmentId,
+            'Faculty_Course_id' => $request->updatedFacultyCourseId,
+            'Faculty_username' => $request->updatedFacultyName]);
+        return redirect()->route('view.faculty');
+    }
+
+    public function DeleteFaculty($id){
+        $useridfromfaculty = faculty::where('Faculty_id','=',$id)->first();
+        $Uid = $useridfromfaculty->Faculty_User_id;
+        $deletefaculty = faculty::where('Faculty_id','=',$id)->delete();
+        $deleteuser = User::where('id','=',$Uid)->delete();
+        return redirect()->route('view.faculty');
     }
 
 }
