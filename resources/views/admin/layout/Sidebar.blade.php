@@ -42,8 +42,8 @@
         </a>
         <div id="collapsecourse" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{route('add.course')}}">Add course</a>
-                <a class="collapse-item" href="{{route('view.course')}}">View course</a>
+                <a class="collapse-item" href="{{route('add.course')}}">Add Course</a>
+                <a class="collapse-item" href="{{route('view.course')}}">View Course</a>
             </div>
         </div>
     </li>
@@ -56,8 +56,22 @@
         </a>
         <div id="collapsesemester" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="{{route('add.semester')}}">Add semester</a>
-                <a class="collapse-item" href="{{route('view.semester')}}">View semester</a>
+                <a class="collapse-item" href="{{route('add.semester')}}">Add Semester</a>
+                <a class="collapse-item" href="{{route('view.semester')}}">View Semester</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsedivision"
+            aria-expanded="true" aria-controls="collapsedivision">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>division</span>
+        </a>
+        <div id="collapsedivision" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('add.division')}}">Add Division</a>
+                <a class="collapse-item" href="{{route('view.division')}}">View Division</a>
             </div>
         </div>
     </li>

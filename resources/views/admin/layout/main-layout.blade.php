@@ -82,23 +82,45 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
+        // faculty
         function getCourseByDepartmentId(value) {
             $.ajax({
                 url: "http://127.0.0.1:8000/admin/course/get-course-by-dept-id/" + value,
                 type: 'GET',
                 dataType: 'json', // added data type
                 success: function(response) {
-                    fillDropdown(response)
+                    fillDropdownForCourse(response)
                 }
             });
         }
 
-        function fillDropdown(data) {
+        function fillDropdownForCourse(data) {
             $("#courseDropdown").empty();
             for (i = 0; i <= data.length; i++) {
                 var newOption = $('<option>');
                 newOption.attr('value', data[i].Course_id).text(data[i].Course_name)
                 $('#courseDropdown').append(newOption);
+            }
+        }
+
+        // semester
+        function getSemesterByCourseId(value) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/admin/semester/get-semester-by-course-id/" + value,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(response) {
+                    fillDropdownForSemester(response)
+                }
+            });
+        }
+
+        function fillDropdownForSemester(data) {
+            $("#semesterDropdown").empty();
+            for (i = 0; i <= data.length; i++) {
+                var newOption = $('<option>');
+                newOption.attr('value', data[i].Semester_id).text(data[i].Semester_number)
+                $('#semesterDropdown').append(newOption);
             }
         }
     </script>

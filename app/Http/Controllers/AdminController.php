@@ -8,6 +8,7 @@ use App\Models\course;
 use App\Models\User;
 use App\Models\faculty;
 use App\Models\semester;
+use App\Models\division;
 
 class AdminController extends Controller
 {
@@ -137,6 +138,53 @@ class AdminController extends Controller
 
         /* Admin Semester Stop */
 
+        /* Admin division Start */
+
+        public function AddDivision(){
+            $departmentdata = department::all();
+            return view('admin.division.add-division',compact('departmentdata'));
+        }
+
+        public function ViewDivision(){
+            $divisiondata = division::all();
+        return view('admin.division.view-division',compact('divisiondata'));
+        }
+
+        public function InsertDivision(Request $request){
+            $saveindivision = new division;
+            $saveindivision->Division_Department_id = $request->divisionDepartmentId;
+            $saveindivision->Division_Course_id = $request->divisionCourseId;
+            $saveindivision->Division_Semester_id = $request->divisionSemesterId;
+            $saveindivision->Division_character = $request->divisioncharacter;
+            $saveindivision->save();
+
+            return redirect()->route('view.division');
+        }
+
+        public function EditDivision($id){
+            $divisioneditdata = division::where('Division_id','=',$id)->first();
+            $departmentdata = department::all();
+            $coursedata = course::all();
+            $semesterdata = semester::all();
+            return view('admin.division.edit-division',compact('coursedata','departmentdata','divisioneditdata','semesterdata'));
+        }
+
+        public function Updatedivision(Request $request){
+            division::where('Division_id', $request->divisionid)
+                ->update(['Division_Department_id' => $request->updatedDivisionDepartmentId,
+                'Division_Course_id' => $request->updatedDivisionCourseId,
+                'Division_Semester_id' => $request->updatedDivisionSemesterId,
+                'Division_character' => $request->updatedDivisioncharacter]);
+            return redirect()->route('view.division');
+        }
+
+        public function DeleteDivision($id){
+            $divisiondelete = division::where('Division_id','=',$id)->delete();
+            return redirect()->route('view.division');
+        }
+
+        /* Admin division Stop */
+
         /* Admin Faculty Start */
 
         public function AddFaculty(){
@@ -201,6 +249,11 @@ class AdminController extends Controller
         public function GetCourseByDepartmentId($id){
             $courses = course::where('Course_Department_id','=',$id)->get();
             return response()->json($courses);
+        }
+
+        public function GetSemesterByCourseId($id){
+            $semesters = semester::where('Semester_Course_id','=',$id)->get();
+            return response()->json($semesters);
         }
 
     /* Admin controllers */

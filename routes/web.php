@@ -54,6 +54,14 @@ Route::group(['prefix' => 'admin','middleware' => ['web','isAdmin']],function(){
     Route::get('/semester/update-semester',[AdminController::class,'UpdateSemester'])->name('update.semester');
     Route::get('/semester/delete-semester/{id}',[AdminController::class,'DeleteSemester'])->name('delete.semester');
 
+    Route::get('/division/add-division',[AdminController::class,'AddDivision'])->name('add.division');
+    Route::get('/semester/get-semester-by-course-id/{id}',[AdminController::class,'GetSemesterByCourseId']);
+    Route::get('/division/insert-division',[AdminController::class,'InsertDivision'])->name('insert.division');
+    Route::get('/division/view-division',[AdminController::class,'ViewDivision'])->name('view.division');
+    Route::get('/division/edit-division/{id}',[AdminController::class,'EditDivision'])->name('edit.division');
+    Route::get('/division/update-division',[AdminController::class,'UpdateDivision'])->name('update.division');
+    Route::get('/division/delete-division/{id}',[AdminController::class,'DeleteDivision'])->name('delete.division');
+
     Route::get('/faculty/add-faculty',[AdminController::class,'AddFaculty'])->name('add.faculty');
     Route::get('/course/get-course-by-dept-id/{id}',[AdminController::class,'GetCourseByDepartmentId']);
     Route::get('/faculty/insert-faculty',[AdminController::class,'InsertFaculty'])->name('insert.faculty');
