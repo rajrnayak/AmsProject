@@ -18,7 +18,7 @@ class faculty extends Model
     }
     public function DepartmentDetails(): BelongsTo
     {
-        return $this->belongsTo(Department::class, 'Faculty_Department_id','Department_id');
+        return $this->belongsTo(department::class, 'Faculty_Department_id','Department_id');
     }
     public function CourseDetails(): BelongsTo
     {
