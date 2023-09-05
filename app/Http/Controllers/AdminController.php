@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\faculty;
 use App\Models\semester;
 use App\Models\division;
+use App\Models\student;
 
 class AdminController extends Controller
 {
@@ -119,8 +120,7 @@ class AdminController extends Controller
         public function EditSemester($id){
             $semestereditdata = semester::where('Semester_id','=',$id)->first();
             $departmentdata = department::all();
-            $coursedata = course::all();
-            return view('admin.semester.edit-semester',compact('coursedata','departmentdata','semestereditdata'));
+            return view('admin.semester.edit-semester',compact('departmentdata','semestereditdata'));
         }
 
         public function UpdateSemester(Request $request){
@@ -164,9 +164,7 @@ class AdminController extends Controller
         public function EditDivision($id){
             $divisioneditdata = division::where('Division_id','=',$id)->first();
             $departmentdata = department::all();
-            $coursedata = course::all();
-            $semesterdata = semester::all();
-            return view('admin.division.edit-division',compact('coursedata','departmentdata','divisioneditdata','semesterdata'));
+            return view('admin.division.edit-division',compact('departmentdata','divisioneditdata'));
         }
 
         public function Updatedivision(Request $request){
@@ -219,9 +217,8 @@ class AdminController extends Controller
         public function EditFaculty($id){
             $facultyeditdata = faculty::where('Faculty_id','=',$id)->first();
             $departmentdata = department::all();
-            $coursedata = course::all();
             $userdata = User::where('id','=',$facultyeditdata->Faculty_User_id)->first();
-            return view('admin.faculty.edit-faculty',compact('coursedata','departmentdata','facultyeditdata','userdata'));
+            return view('admin.faculty.edit-faculty',compact('departmentdata','facultyeditdata','userdata'));
         }
 
         public function UpdateFaculty(Request $request){
@@ -246,6 +243,73 @@ class AdminController extends Controller
 
         /* Admin Faculty Stop */
 
+        /* Admin Student Start */
+
+        public function AddStudent(){
+            $departmentdata = department::all();
+            return view('admin.student.add-student',compact('departmentdata'));
+        }
+
+        public function InsertStudent(Request $request){
+            $saveinuser = new User;
+            $saveinuser->email = $request->studentEmail;
+            $saveinuser->password = bcrypt($request->studentPassword);
+            $saveinuser->role = $request->studentRoleType;
+            $saveinuser->save();
+
+            $userid = User::where('email','=',$request->studentEmail)->value('id');
+
+            $saveinstudent = new student;
+            $saveinstudent->Student_User_id = $userid;
+            $saveinstudent->Student_Department_id = $request->studentDepartmentId;
+            $saveinstudent->Student_Course_id = $request->studentCourseId;
+            $saveinstudent->Student_Semester_id = $request->studentSemesterId;
+            $saveinstudent->Student_Division_id = $request->studentDivisionId;
+            $saveinstudent->Student_username = $request->studentName;
+            $saveinstudent->Student_rollnumber = $request->studentRollnumber;
+            $saveinstudent->save();
+
+            return redirect()->route('view.student');
+        }
+
+        public function ViewStudent(){
+            $studentdata = student::all();
+            return view('admin.student.view-student',compact('studentdata'));
+        }
+
+        public function EditStudent($id){
+            $studenteditdata = student::where('Student_id','=',$id)->first();
+            $departmentdata = department::all();
+            $userdata = User::where('id','=',$studenteditdata->Student_User_id)->first();
+            return view('admin.student.edit-student',compact('departmentdata','userdata','studenteditdata'));
+        }
+
+        public function Updatestudent(Request $request){
+            User::where('id', $request->userid)
+                ->update(['email' => $request->updatedstudentEmail,
+                'password' => bcrypt($request->updatedstudentPassword)]);
+
+            student::where('Student_id', $request->studentid)
+                ->update(['Student_Department_id' => $request->updatedstudentDepartmentId,
+                'Student_Course_id' => $request->updatedstudentCourseId,
+                'Student_Semester_id' => $request->updatedstudentSemesterId,
+                'Student_Division_id' => $request->updatedstudentDivisionId,
+                'Student_username' => $request->updatedstudentName,
+                'Student_rollnumber' => $request->updatedstudentRollnumber]);
+
+            return redirect()->route('view.student');
+        }
+
+        public function DeleteStudent($id){
+            $useridfromstudent = student::where('Student_id','=',$id)->first();
+            $Uid = $useridfromstudent->Student_User_id;
+            $deletestudent = student::where('Student_id','=',$id)->delete();
+            $deleteuser = User::where('id','=',$Uid)->delete();
+            return redirect()->route('view.student');
+        }
+
+        /* Admin Student Stop */
+
         public function GetCourseByDepartmentId($id){
             $courses = course::where('Course_Department_id','=',$id)->get();
             return response()->json($courses);
@@ -254,6 +318,11 @@ class AdminController extends Controller
         public function GetSemesterByCourseId($id){
             $semesters = semester::where('Semester_Course_id','=',$id)->get();
             return response()->json($semesters);
+        }
+
+        public function GetDivisionBySemesterId($id){
+            $divisions = division::where('Division_Semester_id','=',$id)->get();
+            return response()->json($divisions);
         }
 
     /* Admin controllers */

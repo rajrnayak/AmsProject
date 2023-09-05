@@ -70,6 +70,14 @@ Route::group(['prefix' => 'admin','middleware' => ['web','isAdmin']],function(){
     Route::get('/faculty/update-faculty',[AdminController::class,'UpdateFaculty'])->name('update.faculty');
     Route::get('/faculty/delete-faculty/{id}',[AdminController::class,'DeleteFaculty'])->name('delete.faculty');
 
+    Route::get('/student/add-student',[AdminController::class,'AddStudent'])->name('add.student');
+    Route::get('/division/get-division-by-semester-id/{id}',[AdminController::class,'GetDivisionBySemesterId']);
+    Route::get('/student/insert-student',[AdminController::class,'InsertStudent'])->name('insert.student');
+    Route::get('/student/view-student',[AdminController::class,'ViewStudent'])->name('view.student');
+    Route::get('/student/edit-student/{id}',[AdminController::class,'EditStudent'])->name('edit.student');
+    Route::get('/student/update-student',[AdminController::class,'UpdateStudent'])->name('update.student');
+    Route::get('/student/delete-student/{id}',[AdminController::class,'DeleteStudent'])->name('delete.student');
+
 });
 
 Route::group(['prefix' => 'faculty','middleware' => ['web','isFaculty']],function(){

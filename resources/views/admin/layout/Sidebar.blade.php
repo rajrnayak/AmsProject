@@ -77,15 +77,29 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-            aria-expanded="true" aria-controls="collapsePages">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsefaculty"
+            aria-expanded="true" aria-controls="collapsefaculty">
             <i class="fas fa-fw fa-folder"></i>
             <span>Faculty</span>
         </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapsefaculty" class="collapse" aria-labelledby="headingfaculty" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="{{route('add.faculty')}}">Add Faculty</a>
                 <a class="collapse-item" href="{{route('view.faculty')}}">View Faculty</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsestudent"
+            aria-expanded="true" aria-controls="collapsestudent">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>Student</span>
+        </a>
+        <div id="collapsestudent" class="collapse" aria-labelledby="headingstudent" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{route('add.student')}}">Add Student</a>
+                <a class="collapse-item" href="{{route('view.student')}}">View Student</a>
             </div>
         </div>
     </li>
