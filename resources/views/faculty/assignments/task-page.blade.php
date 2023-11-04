@@ -8,13 +8,14 @@
                 @csrf
                 {{-- <input type="hidden" class="form-control" id="inputrole" name="input_role" value="0"> --}}
 
-                <div class="form row">
+                <div class="form-row">
                     <div class="col md-3 my-2 ">
                         <label for="task_input_1">Name of task</label>
                         <input type="text" class="form-control" id="task_input_1"
                             placeholder="Enter the name of assignment/task" name="" value="" autofocus>
                     </div>
-
+                </div>
+                <div class="form-row">
                     <div class="col md-3 my-2 ">
                         <label for="datetimepicker6">Starting Date</label>
                         <input type="datetime-local" class="form-control" id="datetimepicker6"
@@ -26,7 +27,6 @@
                         <input type="datetime-local" class="form-control" id="datetimepicker7"
                             name="" value="" autofocus>
                     </div>
-
                 </div>
                 <div class="form-row">
                     <div class="input-group-text col my-2 md-3 mr-2">
@@ -61,7 +61,7 @@
                     </div>
                 </div>
                 <div class="form-row">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3 mt-2">
                         <div class="input-group-prepend">
                             <label for="inputGroupFile01"><span class="input-group-text">Upload</span></label>
                         </div>
@@ -78,19 +78,4 @@
             </form>
         </div>
     </div>
-
-    {{-- <script type="text/javascript">
-        $(function() {
-            $('#datetimepicker6').datetimepicker();
-            $('#datetimepicker7').datetimepicker({
-                useCurrent: false //Important! See issue #1075
-            });
-            $("#datetimepicker6").on("dp.change", function(e) {
-                $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-            });
-            $("#datetimepicker7").on("dp.change", function(e) {
-                $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
-            });
-        });
-    </script> --}}
 @endsection
