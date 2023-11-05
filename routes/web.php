@@ -84,10 +84,15 @@ Route::group(['prefix' => 'faculty','middleware' => ['web','isFaculty']],functio
 
     Route::get('/dashboard',[FacultyController::class,'FacultyDashboard'])->name('faculty.dashboard');
 
+    Route::get('/assignment',[FacultyController::class,'TaskPage'])->name('task.page');
+    Route::get('/dashboard',[FacultyController::class,'FacultyDashboard'])->name('faculty.dashboard');
+
+
 });
 
 Route::group(['prefix' => 'student','middleware' => ['web','isStudent']],function(){
 
     Route::get('/dashboard',[StudentController::class,'StudentDashboard'])->name('student.dashboard');
+
 
 });
