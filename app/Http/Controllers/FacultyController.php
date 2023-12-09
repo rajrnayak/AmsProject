@@ -13,4 +13,8 @@ class FacultyController extends Controller
     public function TaskPage(){
         return view('faculty.assignments.task-page');
     }
+
+    public function TaskAllotPage(){
+        return view('faculty.allotment.task_allot_page');
+    }
 }

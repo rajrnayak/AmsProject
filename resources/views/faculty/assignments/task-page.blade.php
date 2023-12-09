@@ -1,8 +1,8 @@
 @extends('faculty.layout.main-layout')
 
 @section('faculty-main-container')
-    <div class="card mx-4">
-        <div class="card-body px-3">
+    <div class="card mx-5">
+        <div class="card-body px-5">
             <h3>CREATE TASK</h3>
             <form action="" method="post">
                 @csrf
@@ -11,7 +11,7 @@
                 <div class="form-row">
                     <div class="col md-3 my-2 ">
                         <label for="task_input_1">Name of task</label>
-                        <input type="text" class="form-control" id="task_input_1"
+                        <input type="text" class="form-control w-75" id="task_input_1"
                             placeholder="Enter the name of assignment/task" name="" value="" autofocus>
                     </div>
                 </div>
@@ -70,7 +70,11 @@
                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
-
+                    <div class="col">
+                        <label for="inputGroupDescription01">Description</label>
+                        <textarea class="form-control" id="inputGroupDescription01"
+                            name="" value="" autofocus></textarea>
+                    </div>
                 </div>
                 <div class="form-row">
                     <input class="btn btn-primary my-2" type="submit" value="submit">
