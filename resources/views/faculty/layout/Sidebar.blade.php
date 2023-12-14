@@ -54,7 +54,7 @@
 
     <!-- Nav Item - Tables -->
     <li class="nav-item">
-        <a class="nav-link" href="{{ asset('/main-layout') }}">
+        <a class="nav-link" href="{{ route('history.page') }}">
             <i class="fas fa-fw fa-table"></i>
             <span>History</span></a>
     </li>

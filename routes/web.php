@@ -86,6 +86,7 @@ Route::group(['prefix' => 'faculty','middleware' => ['web','isFaculty']],functio
 
     Route::get('/assignment',[FacultyController::class,'TaskPage'])->name('task.page');
     Route::get('/task-allot',[FacultyController::class,'TaskAllotPage'])->name('task_allot.page');
+    Route::get('/history',[FacultyController::class,'HistoryPage'])->name('history.page');
 
 
 });
