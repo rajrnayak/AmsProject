@@ -88,8 +88,10 @@
         crossorigin="anonymous"></script>
     <script src="{{ asset('js/demo/datatables-simple-demo.js') }}"></script>
 
+    <script src="{{asset('js/get-user-name.js')}}"></script>
     {{-- -----------------------------------------------------------------------------------}}
     <script src="{{asset('js/semester-by-course-dd.js')}}"></script>
+
     <script>
         function getCourseByDepartmentId(value) {
             $.ajax({
@@ -150,7 +152,12 @@
                 $('#divisionDropdown').append(newOption);
             }
         }
+
+
+
     </script>
+
+   
 </body>
 
 </html>

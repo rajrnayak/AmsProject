@@ -78,6 +78,9 @@ Route::group(['prefix' => 'admin','middleware' => ['web','isAdmin']],function(){
     Route::get('/student/update-student',[AdminController::class,'UpdateStudent'])->name('update.student');
     Route::get('/student/delete-student/{id}',[AdminController::class,'DeleteStudent'])->name('delete.student');
 
+    // profile page route
+    Route::get('/profile',[AdminController::class,'ViewAdminProfile'])->name('view.profile');
+
 });
 
 Route::group(['prefix' => 'faculty','middleware' => ['web','isFaculty']],function(){

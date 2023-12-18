@@ -310,6 +310,8 @@ class AdminController extends Controller
 
         /* Admin Student Stop */
 
+        // * dependent dropdown functions *
+
         public function GetCourseByDepartmentId($id){
             $courses = course::where('Course_Department_id','=',$id)->get();
             return response()->json($courses);
@@ -324,6 +326,11 @@ class AdminController extends Controller
             $divisions = division::where('Division_Semester_id','=',$id)->get();
             return response()->json($divisions);
         }
+        // * dependent dropdown functions end *
 
+
+        public function ViewAdminProfile(){
+            return view('admin.profile.logged-user-profile');
+        }
     /* Admin controllers */
 }
