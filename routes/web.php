@@ -88,6 +88,14 @@ Route::group(['prefix' => 'faculty','middleware' => ['web','isFaculty']],functio
     Route::get('/task-allot',[FacultyController::class,'TaskAllotPage'])->name('task_allot.page');
     Route::get('/history',[FacultyController::class,'HistoryPage'])->name('history.page');
 
+    // dependent drop down for faculty panel
+    Route::get('/course/get-course-by-dept-id/{id}',[AdminController::class,'GetCourseByDepartmentId']);
+
+    Route::get('/semester/get-semester-by-course-id/{id}',[AdminController::class,'GetSemesterByCourseId']);
+
+    Route::get('/division/get-division-by-semester-id/{id}',[AdminController::class,'GetDivisionBySemesterId']);
+
+    // dependent drop down for faculty panel
 
 });
 

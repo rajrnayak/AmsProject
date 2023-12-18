@@ -87,6 +87,70 @@
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
         crossorigin="anonymous"></script>
     <script src="{{ asset('js/demo/datatables-simple-demo.js') }}"></script>
+
+    {{-- -----------------------------------------------------------------------------------}}
+    <script src="{{asset('js/semester-by-course-dd.js')}}"></script>
+    <script>
+        function getCourseByDepartmentId(value) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/faculty/course/get-course-by-dept-id/" + value,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(response) {
+                    fillDropdownForCourse(response)
+                }
+            });
+        }
+
+        function fillDropdownForCourse(data) {
+            $("#courseDropdown").empty();
+            for (i = 0; i <= data.length; i++) {
+                var newOption = $('<option>');
+                newOption.attr('value', data[i].Course_id).text(data[i].Course_name)
+                $('#courseDropdown').append(newOption);
+            }
+        }
+
+        function getSemesterByCourseId(value) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/faculty/semester/get-semester-by-course-id/" + value,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(response) {
+                    fillDropdownForSemester(response)
+                }
+            });
+        }
+
+        function fillDropdownForSemester(data) {
+            $("#semesterDropdown").empty();
+            for (i = 0; i <= data.length; i++) {
+                var newOption = $('<option>');
+                newOption.attr('value', data[i].Semester_id).text(data[i].Semester_number)
+                $('#semesterDropdown').append(newOption);
+            }
+        }
+
+        function getDivisionBySemesterId(value) {
+            $.ajax({
+                url: "http://127.0.0.1:8000/faculty/division/get-division-by-semester-id/" + value,
+                type: 'GET',
+                dataType: 'json', // added data type
+                success: function(response) {
+                    fillDropdownForDivision(response)
+                }
+            });
+        }
+
+        function fillDropdownForDivision(data) {
+            $("#divisionDropdown").empty();
+            for (i = 0; i <= data.length; i++) {
+                var newOption = $('<option>');
+                newOption.attr('value', data[i].Division_id).text(data[i].Division_character)
+                $('#divisionDropdown').append(newOption);
+            }
+        }
+    </script>
 </body>
 
 </html>
