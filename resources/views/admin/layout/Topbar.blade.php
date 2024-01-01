@@ -43,5 +43,5 @@
 </nav>
 
 
-
+@yield('profile-body')
 <!-- End of Topbar -->
